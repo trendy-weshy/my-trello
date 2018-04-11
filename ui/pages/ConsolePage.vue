@@ -1,0 +1,50 @@
+<template>
+    <span>
+
+        <v-navigation-drawer fixed permanent touchless stateless clipped app>
+            <Sidebar />
+        </v-navigation-drawer>
+
+        <v-toolbar clipped-left app dark class="accent">
+            <v-toolbar-title>MyTrello</v-toolbar-title>
+        </v-toolbar>
+
+        <!-- page -->
+        <v-content>
+            <ToolOptions />
+            <v-container fluid>
+            <v-slide-y-transition mode="out-in">
+                <v-layout column align-center>
+                <img src="static/v.png" alt="Vuetify.js" class="mb-5" />
+                <blockquote>
+                    &#8220;First, solve the problem. Then, write the code.&#8221;
+                    <footer>
+                    <small>
+                        <em>&mdash;John Johnson</em>
+                    </small>
+                    </footer>
+                </blockquote>
+                </v-layout>
+            </v-slide-y-transition>
+            </v-container>
+        </v-content>
+
+    </span>
+
+</template>
+
+<script>
+  import Sidebar from 'components/Sidebar.vue';
+  import ToolOptions from 'components/ToolOptions.vue';
+
+  export default {
+    components: {
+      ToolOptions,
+      Sidebar
+    }
+  }
+</script>
+
+<style lang="sass">
+
+</style>

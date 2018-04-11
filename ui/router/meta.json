@@ -1,0 +1,12 @@
+{
+  "/console": {
+    "title": "MyTrello | Console",
+    "description": "Console Board for your Project",
+    "keywords": ""
+  },
+  "/start": {
+    "title": "MyTrello | Add a Project",
+    "description": "Add a Project to your MyTrello Board in-order to add tasks and notes.",
+    "keywords": ""
+  }
+}
