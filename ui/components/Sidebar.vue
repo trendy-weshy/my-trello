@@ -3,7 +3,7 @@
         <v-subheader>Project Tools</v-subheader>
         <v-list-tile ripple href="javascript:;">
             <v-list-tile-action>
-                <v-icon>assignment</v-icon>
+                <v-icon>view_list</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
                 <v-list-tile-title>Your Tasks</v-list-tile-title>
@@ -11,7 +11,7 @@
         </v-list-tile>
         <v-list-tile ripple href="javascript:;">
             <v-list-tile-action>
-                <v-icon>note</v-icon>
+                <v-icon>assignments</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
                 <v-list-tile-title>Your Notes</v-list-tile-title>
