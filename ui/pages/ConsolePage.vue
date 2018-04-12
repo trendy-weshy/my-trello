@@ -35,17 +35,21 @@
 </template>
 
 <script>
-  import Sidebar from 'components/Sidebar.vue';
-  import ToolOptions from 'components/ToolOptions.vue';
+    import Sidebar from 'components/Sidebar.vue';
+    import ToolOptions from 'components/ToolOptions.vue';
+    import { mapGetters } from 'vuex';
 
   export default {
+    computed: {
+        ...mapGetters({
+            errors: {
+                projects: 'ProjectModule/error'
+            }
+        })
+    },
     components: {
       ToolOptions,
       Sidebar
     }
   }
 </script>
-
-<style lang="sass">
-
-</style>

@@ -1,6 +1,5 @@
 <template>
     <v-container fluid justify-center>
-        {{ projectErrors }}
         <v-layout row wrap justify-center>
             <v-flex xs5 align-content-center fill-height class="mt-3">
                 <v-card class="mb-5">
