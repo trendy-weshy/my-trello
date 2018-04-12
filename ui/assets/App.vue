@@ -34,7 +34,7 @@
     methods: {
       reportBug: () => window.location.replace('mailto:waweruj00@gmail.com')
     },
-    mounted() {
+    created() {
       this.$store.dispatch('ProjectModule/getProject');
     },
     computed: {

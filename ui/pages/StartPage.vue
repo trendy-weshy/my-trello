@@ -20,10 +20,11 @@
 <script>
     import ProjectDetailsForm from 'components/ProjectDetailsForm.vue';
     import { mapGetters } from 'vuex';
+    import { isEmpty, isNil } from 'lodash';    
 
     export default {
         computed: {
-            ...mapGetters({ projectErrors: 'ProjectModule/error' })
+            ...mapGetters({ projectErrors: 'ProjectModule/error', project: 'ProjectModule/project' })
         },
         components: {
             ProjectDetailsForm
@@ -33,6 +34,11 @@
                 const { title, rootDir, user } = e.project;
                 this.$store.dispatch('ProjectModule/addProject', { title, rootDir, user });
                 this.$router.push({ path: 'console' });                
+            }
+        },
+        created() {
+            if (!isNil(this.project) && (!isEmpty(this.project.title) && !isEmpty(this.project.rootDir) && !isEmpty(this.project.user))) {
+                this.$router.push({ path: 'console' });
             }
         }
     }

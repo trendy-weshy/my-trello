@@ -42,6 +42,7 @@
     import EditProfile from 'components/EditProject.vue';
     import ToolOptions from 'components/ToolOptions.vue';
     import { mapGetters } from 'vuex';
+    import { isEmpty, isNil } from 'lodash';
 
   export default {
     data: () => ({
@@ -61,6 +62,11 @@
     methods: {
         exitConsole () {
             this.$store.dispatch('ProjectModule/clearProject');
+            this.$router.push({ path: 'start' });
+        }
+    },
+    created() {
+        if (isNil(this.project) || isEmpty(this.project.title) || isEmpty(this.project.rootDir) || isEmpty(this.project.user)) {
             this.$router.push({ path: 'start' });
         }
     }

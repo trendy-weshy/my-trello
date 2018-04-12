@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import ProjectsApi from 'store/project/api';
-import { isEmpty, isNil, isError } from 'lodash';
 
 // The meta data for your routes
 const meta = require('./meta.json');
@@ -25,7 +24,7 @@ export function createRouter () {
           component: resolve => import(`pages/StartPage.vue`).then(resolve)
         },
         // Global redirect for 404
-        { path: '*', redirect: '/start' }
+        { path: '*', redirect: '/console' }
       ]
     });
 

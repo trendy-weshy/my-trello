@@ -24,6 +24,7 @@ export default {
     },
     actions: {
         addProject(ctx, project) {
+            ctx.commit('error', null);
             const isInvalid = Api.validate(project);
             if (isInvalid) {
                 ctx.commit('error', project);
@@ -34,6 +35,7 @@ export default {
             return;
         },
         clearProject(ctx) {
+            ctx.commit('error', null);
             Api.remove();
             ctx.commit('reset');
             return;
@@ -43,6 +45,7 @@ export default {
             return;
         },
         getProject(ctx) {
+            ctx.commit('error', null);
             const project = Api.retrieve();
             if (isError(project)) {
                 ctx.commit('error', project);
