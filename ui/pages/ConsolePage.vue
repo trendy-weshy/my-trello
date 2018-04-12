@@ -7,11 +7,12 @@
 
         <v-toolbar clipped-left app dark class="accent">
             <v-toolbar-title>MyTrello</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <ToolOptions />
         </v-toolbar>
 
         <!-- page -->
         <v-content>
-            <ToolOptions />
             <v-container fluid>
             <v-slide-y-transition mode="out-in">
                 <v-layout column align-center>

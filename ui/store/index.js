@@ -3,16 +3,14 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+import ProjectModule from './projects.module';
+
 export function createStore () {
 
   return new Vuex.Store({
-    state: {},
-
-    actions: {},
-
-    mutations: {},
-
-    getters: {}
+    modules: {
+      ProjectModule
+    }
   });
 
 }

@@ -27,7 +27,8 @@
         data: () => ({}),
         methods: {
             submit(e) {
-                console.log(e);
+                const { title, rootDir, user } = e.project;
+                console.log({ title, rootDir, user });
             }
         }
     }

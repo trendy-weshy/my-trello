@@ -1,6 +1,6 @@
 <template>
     <v-menu lazy transition="slide-x-transition">
-        <v-btn slot="activator" small color="orange" fixed dark fab bottom right>
+        <v-btn slot="activator" small color="orange" dark fab flat>
             <v-icon>build</v-icon>
         </v-btn>
         <v-list>
@@ -57,7 +57,6 @@
                 { action: 'info_outline', title: 'About MyTrello' },
                 { divider: true },
                 { action: 'exit_to_app', title: '' },
-                // { header: 'Labels' },
             ]
         }),
         methods: {
