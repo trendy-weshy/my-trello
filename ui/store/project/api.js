@@ -13,6 +13,7 @@ const Api = {
         return null;
     },
     save(project) {
+        
         try {
             const isInvalid = Api.validate(project);
             if (isInvalid) return isInvalid;
@@ -20,7 +21,7 @@ const Api = {
             const projectString = JSON.stringify(project);
             window.localStorage.setItem('myTrello/project', projectString);
         } catch (e) {
-            projectsApi.remove();
+            Api.remove();
 
             const err = new Error();
             err.name = 'ProjectAdditionError';
@@ -29,6 +30,7 @@ const Api = {
             err.level = 'error';
             return err;
         }
+
     },
     retrieve() {
         try {
@@ -36,7 +38,7 @@ const Api = {
             const project = JSON.parse(savedProject);
             return project;
         } catch (e) {
-            projectsApi.remove();
+            Api.remove();
 
             const err = new Error();
             err.name = 'ProjectDataDamage';
@@ -46,6 +48,8 @@ const Api = {
             return err;
         }
     },
-    remove() { window.localStorage.removeItem('myTrello/project'); }
+    remove() {
+        if ((typeof window !== 'undefined')) window.localStorage.removeItem('myTrello/project');
+    }
 };
 export default Api;

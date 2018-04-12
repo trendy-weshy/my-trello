@@ -42,7 +42,6 @@
     import EditProfile from 'components/EditProject.vue';
     import ToolOptions from 'components/ToolOptions.vue';
     import { mapGetters } from 'vuex';
-    import { isEmpty } from 'lodash';
 
   export default {
     data: () => ({
@@ -58,11 +57,6 @@
         EditProfile,
         ToolOptions,
         Sidebar
-    },
-    mounted() {
-        if (isEmpty(this.project) && isEmpty(this.project.title) || isEmpty(this.project.rootDir)) {
-            this.$store.dispatch('ProjectModule/getProject');
-        }
     },
     methods: {
         exitConsole () {

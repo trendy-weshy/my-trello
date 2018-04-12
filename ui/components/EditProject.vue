@@ -38,6 +38,7 @@
         data: () => ({ dialog: false }),
         methods: {
             edit (e) {
+                console.log(title, rootDir===this.project.rootDir, user);
                 const { title, rootDir, user } = e.project;
                 this.$store.dispatch('ProjectModule/addProject', { title, rootDir, user });
                 this.dialog = !this.dialog;                    

@@ -12,6 +12,8 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+  import { isEmpty } from 'lodash';
   import Meta from 'mixins/meta';
 
   export default {
@@ -31,6 +33,14 @@
     }),
     methods: {
       reportBug: () => window.location.replace('mailto:waweruj00@gmail.com')
+    },
+    mounted() {
+      this.$store.dispatch('ProjectModule/getProject');
+    },
+    computed: {
+      ...mapGetters({
+        project: 'ProjectModule/project'
+      })
     }
   }
 </script>
