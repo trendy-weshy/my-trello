@@ -16,6 +16,7 @@ import {
   VTooltip,
   VTabs,
   VForm,
+  VDialog,
   VTextField,
   transitions
 } from 'vuetify';
@@ -38,6 +39,7 @@ Vue.use(Vuetify, {
       VTooltip,
       VTabs,
       VForm,
+      VDialog,
       VTextField,
       transitions
     },

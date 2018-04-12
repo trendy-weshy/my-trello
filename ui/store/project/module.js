@@ -1,4 +1,4 @@
-import { isNil } from 'lodash';
+import { isNil, isError, isEmpty } from 'lodash';
 import Api from './api';
 
 export default {
@@ -15,16 +15,15 @@ export default {
             if (isNil(error)) {
                 state.error = null;
             } else {
-                state.error = Objec.assign({}, state.error, error);
+                state.error = Object.assign({}, state.error, error);
             }
         },
         reset: (state) => {
-            state.project = { title: '', rootDir: '', user: '' };
+            state.project = Object.assign({}, { title: '', rootDir: '', user: '' });
         }
     },
     actions: {
         addProject(ctx, project) {
-            console.log('am called');
             const isInvalid = Api.validate(project);
             if (isInvalid) {
                 ctx.commit('error', project);

@@ -8,7 +8,7 @@
                     </v-card-title>
                     
                     <div class="mt-2 px-4">
-                        <ProjectDetailsForm @submit-project="submit($event)" />
+                        <ProjectDetailsForm @submit-project="submit($event)" provideSubmitBtn />
                     </div>
 
                 </v-card>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-    import ProjectDetailsForm from '../components/ProjectDetailsForm.vue';
+    import ProjectDetailsForm from 'components/ProjectDetailsForm.vue';
     import { mapGetters } from 'vuex';
 
     export default {
@@ -32,6 +32,7 @@
             submit(e) {
                 const { title, rootDir, user } = e.project;
                 this.$store.dispatch('ProjectModule/addProject', { title, rootDir, user });
+                this.$router.push({ path: 'console' });                
             }
         }
     }

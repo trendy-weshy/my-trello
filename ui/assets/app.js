@@ -21,7 +21,7 @@ export function createApp (ssrContext) {
 
   // sync the router with the vuex store.
   // this registers `store.state.route`
-  sync(store, router);
+  sync(store, router, { moduleName: 'RouteModule' });
 
   // create the app instance.
   // here we inject the router, store and ssr context to all child components,
