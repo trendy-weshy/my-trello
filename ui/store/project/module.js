@@ -1,7 +1,8 @@
 import { isNil } from 'lodash';
-import Api from './project.api';
+import Api from './api';
 
 export default {
+    namespaced: true,
     state: {
         project: { title: '', rootDir: '', user: '' },
         error: null
@@ -23,7 +24,8 @@ export default {
     },
     actions: {
         addProject(ctx, project) {
-            const isInvalid = projectsApi.validate(project);
+            console.log('am called');
+            const isInvalid = Api.validate(project);
             if (isInvalid) {
                 ctx.commit('error', project);
                 return;

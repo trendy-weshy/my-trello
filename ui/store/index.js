@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-import ProjectModule from './projects.module';
+import ProjectModule from './project/module';
 
 export function createStore () {
 

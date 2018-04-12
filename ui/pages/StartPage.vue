@@ -1,5 +1,6 @@
 <template>
     <v-container fluid justify-center>
+        {{ projectErrors }}
         <v-layout row wrap justify-center>
             <v-flex xs5 align-content-center fill-height class="mt-3">
                 <v-card class="mb-5">
@@ -19,16 +20,19 @@
 
 <script>
     import ProjectDetailsForm from '../components/ProjectDetailsForm.vue';
+    import { mapGetters } from 'vuex';
 
     export default {
+        computed: {
+            ...mapGetters({ projectErrors: 'ProjectModule/error' })
+        },
         components: {
             ProjectDetailsForm
         },
-        data: () => ({}),
         methods: {
             submit(e) {
                 const { title, rootDir, user } = e.project;
-                console.log({ title, rootDir, user });
+                this.$store.dispatch('ProjectModule/addProject', { title, rootDir, user });
             }
         }
     }

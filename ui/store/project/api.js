@@ -1,6 +1,6 @@
 import { isNil, has } from 'lodash';
 
-export default {
+const Api = {
     validate(project) {
         if (!has(project, 'title') || !has(project, 'rootDir') || !has(project, 'user')) {
             const err = new Error();
@@ -14,7 +14,7 @@ export default {
     },
     save(project) {
         try {
-            const isInvalid = projectsApi.validate(project);
+            const isInvalid = Api.validate(project);
             if (isInvalid) return isInvalid;
 
             const projectString = JSON.stringify(project);
@@ -48,3 +48,4 @@ export default {
     },
     remove() { window.localStorage.removeItem('myTrello/project'); }
 };
+export default Api;
