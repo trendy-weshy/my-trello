@@ -1,0 +1,12 @@
+{
+  "root": true,
+  "extends": [
+    "plugin:vue/essential",
+    "@vue/airbnb"
+  ],
+  "rules": {
+    "no-param-reassign": "warn",
+    "no-named-as-default-member": "off",
+    "max-len": "off"
+  }
+}
