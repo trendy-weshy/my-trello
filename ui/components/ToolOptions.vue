@@ -32,7 +32,7 @@
                     <v-icon>exit_to_app</v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>
-                    <v-list-tile-title>Change Project</v-list-tile-title>
+                    <v-list-tile-title>Exit This Project</v-list-tile-title>
                 </v-list-tile-content>
             </v-list-tile>
         </v-list>
