@@ -3,6 +3,7 @@ import { findIndex, isNil, sortedUniq, sortBy } from 'lodash';
 import Api from './api';
 
 export default {
+  namespaced: true,
   state: {
     tasks: [],
     errors: null,
