@@ -9,17 +9,17 @@ function createRouter() {
     routes: [
       {
         path: '/console',
-        // eslint-disable-next-line
         component: resolve => import('@/pages/ConsolePage.vue').then(resolve),
         children: [
           {
-            path: '/tasks',
+            path: 'tasks',
             component: resolve => import('@/pages/TasksPage.vue').then(resolve),
           },
           {
-            path: '/notes',
+            path: 'notes',
             component: resolve => import('@/pages/NotesPage.vue').then(resolve),
           },
+          { path: '*', redirect: 'tasks' },
         ],
       },
       {

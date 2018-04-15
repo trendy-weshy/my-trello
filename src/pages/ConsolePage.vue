@@ -16,9 +16,9 @@
         <!-- page -->
         <v-content>
             <v-container fluid>
-            <v-slide-y-transition mode="out-in">
+            <v-slide-x-transition mode="out-in">
                 <router-view></router-view>
-            </v-slide-y-transition>
+            </v-slide-x-transition>
             </v-container>
         </v-content>
 
