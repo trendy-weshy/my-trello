@@ -10,19 +10,19 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import { mapGetters } from 'vuex';
 import NoTaskView from '@/components/tasks/NoTasks.vue';
 
 export default {
   name: 'TasksPage',
   components: {
-    NoTaskView
+    NoTaskView,
   },
   computed: {
     ...mapGetters({
       taskGroups: 'TasksModule/taskGroups',
-      tasksError: 'TasksModule/error'
-    })
-  }
+      tasksError: 'TasksModule/error',
+    }),
+  },
 };
 </script>

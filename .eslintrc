@@ -5,7 +5,7 @@
     "@vue/airbnb"
   ],
   "rules": {
-    "no-param-reassign": "warn",
+    "no-param-reassign": "off",
     "no-named-as-default-member": "off",
     "max-len": "off"
   }
