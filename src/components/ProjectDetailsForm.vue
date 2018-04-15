@@ -1,5 +1,5 @@
 <template>
-    <form name="addProject" class="pb-5" @keypress.enter="submit()">
+    <form name="addProject" class="pb-5" @keypress.enter="!$v.invalid && submit()">
         <v-text-field
             label="Title"
             single-line
@@ -39,7 +39,7 @@
             absolute
             bottom
             right
-            :disabled="!$v.project.$dirty || $v.project.$invalid"
+            :disabled="!$v.$dirty || $v.$invalid"
             class="mt-4"
             color="primary"
             @click.prevent="submit()">
@@ -101,21 +101,13 @@ export default {
       };
     },
     populateProjectModel() {
-      if (this.edit
-                        && !isEmpty(this.stagedProject)
-                        && !isEmpty(this.stagedProject.title)
-                        && !isEmpty(this.stagedProject.rootDir)
-                        && !isEmpty(this.stagedProject.user)
-      ) { this.project = Object.assign({}, this.stagedProject); }
+      if (this.edit && !isEmpty(this.stagedProject)) {
+        this.project = Object.assign({}, this.stagedProject);
+      }
     },
   },
   mounted() {
     this.populateProjectModel();
-  }, /* ,
-        watch: {
-            'stagedProject': () => {
-                this.populateProjectModel();
-            }
-        } */
+  },
 };
 </script>
