@@ -1,5 +1,6 @@
 <template>
     <v-list>
+
         <v-list-tile avatar class="py-2">
             <v-list-tile-avatar>
                 <v-icon class="secondary white--text">group_work</v-icon>
@@ -8,7 +9,7 @@
                 <v-list-tile-title>{{ project.title }}</v-list-tile-title>
                 <v-tooltip bottom>
                     <v-list-tile-sub-title slot="activator">{{ project.rootDir }}</v-list-tile-sub-title>
-                    <span>{{ project.rootDir }}</span>                    
+                    <span>{{ project.rootDir }}</span>
                 </v-tooltip>
             </v-list-tile-content>
             <v-list-tile-action>
@@ -18,6 +19,7 @@
                 </v-tooltip>
             </v-list-tile-action>
         </v-list-tile>
+
         <v-divider class="mb-3"></v-divider>
         <v-subheader>Project Tools</v-subheader>
         <v-list-tile ripple to="/console/tasks">
@@ -36,6 +38,7 @@
                 <v-list-tile-title>Your Notes</v-list-tile-title>
             </v-list-tile-content>
         </v-list-tile>
+
     </v-list>
 </template>
 

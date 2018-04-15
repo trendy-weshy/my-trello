@@ -38,7 +38,7 @@ export default {
       Api.remove();
       ctx.commit('reset');
     },
-    throwProjectError(ctx, err) {
+    throwError(ctx, err) {
       ctx.commit('error', err);
     },
     getProject(ctx) {
