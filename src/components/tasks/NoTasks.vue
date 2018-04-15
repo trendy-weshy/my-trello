@@ -8,7 +8,7 @@
               <div class="headline">
                 <h3>No Tasks Found</h3>
               </div>
-              <p>Looks like you haven't created any tasks.</p>
+              <p>Looks like you haven't created any task groups or tasks.</p>
             </div>
           </v-flex>
           <v-flex xs5>
@@ -34,7 +34,7 @@
 export default {
   name: 'NoTasksView',
   data: () => ({
-    baseUrl: process.env.BASE_URL
-  })
+    baseUrl: process.env.BASE_URL,
+  }),
 };
 </script>
