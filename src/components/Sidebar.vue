@@ -6,13 +6,13 @@
             </v-list-tile-avatar>
             <v-list-tile-content>
                 <v-list-tile-title>{{ project.title }}</v-list-tile-title>
-                <v-tooltip bottom color="secondary">
+                <v-tooltip bottom>
                     <v-list-tile-sub-title slot="activator">{{ project.rootDir }}</v-list-tile-sub-title>
                     <span>{{ project.rootDir }}</span>                    
                 </v-tooltip>
             </v-list-tile-content>
             <v-list-tile-action>
-                <v-tooltip bottom color="secondary">
+                <v-tooltip bottom>
                     <v-icon slot="activator" style="cursor: pointer;" color="secondary">face</v-icon>
                     <span>By {{ project.user }}</span>
                 </v-tooltip>
