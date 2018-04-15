@@ -1,5 +1,5 @@
 <template>
-    <v-dialog v-model="dialog" persistent max-width="500px" hide-overlay lazy>
+    <v-dialog v-model="dialog" persistent max-width="500px" lazy>
         <v-btn small slot="activator" color="white" dark fab flat @click.native.prevent="dialog = !dialog">
             <v-icon>edit</v-icon>
         </v-btn>
