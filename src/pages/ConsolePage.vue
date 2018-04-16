@@ -10,12 +10,11 @@
             <v-spacer></v-spacer>
             <EditProfile />
             <ToolOptions @console:exit="exitConsole($event)" />
-
         </v-toolbar>
 
         <!-- page -->
         <v-content>
-            <v-container fluid>
+            <v-container fluid justify-space-around>
             <v-slide-x-transition mode="out-in">
                 <router-view></router-view>
             </v-slide-x-transition>

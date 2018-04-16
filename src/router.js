@@ -19,7 +19,7 @@ function createRouter() {
             path: 'notes',
             component: resolve => import('@/pages/NotesPage.vue').then(resolve),
           },
-          { path: '*', redirect: 'tasks' },
+          { path: '', redirect: 'tasks' },
         ],
       },
       {

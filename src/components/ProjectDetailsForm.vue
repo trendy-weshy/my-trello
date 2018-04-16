@@ -1,5 +1,5 @@
 <template>
-    <form name="addProject" class="pb-5" @keypress.enter="!$v.invalid && submit()">
+    <form novalidate name="addProject" class="pb-5" @submit.prevent="!$v.invalid && submit()">
         <v-text-field
             label="Title"
             single-line

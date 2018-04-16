@@ -1,6 +1,6 @@
 <template>
     <v-menu lazy transition="slide-x-transition">
-        <v-btn slot="activator" small color="white" dark fab flat>
+        <v-btn slot="activator" icon fab flat small>
             <v-icon>build</v-icon>
         </v-btn>
         <v-list>

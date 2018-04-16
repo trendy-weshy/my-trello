@@ -6,7 +6,7 @@ export default {
   namespaced: true,
   state: {
     tasks: [],
-    errors: null,
+    error: null,
   },
   mutations: {
     // #note: Load tasks (task groups with their respective tasks) to store
@@ -152,6 +152,6 @@ export default {
     singeTask: (state, getters) => (idx, taskIdx) => getters.taskGroup(idx).tasks[taskIdx],
     sortedTasks: (state, getters) => (idx, by) => sortBy(getters.taskList(idx), [o => o[by]]),
     selectSingleUserTasks: (state, getters) => (idx, user) => getters.taskList(idx).filter(v => v.addedBy === user),
-    userList: (state, getter) => idx => sortedUniq(getter.taskList(idx).map(v => v.addedBy)),
+    userList: (state, getters) => idx => sortedUniq(getters.taskList(idx).map(v => v.addedBy)),
   },
 };
