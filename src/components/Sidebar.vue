@@ -15,7 +15,7 @@
             <v-list-tile-action>
                 <v-tooltip bottom>
                     <v-icon slot="activator" style="cursor: pointer;" color="secondary">face</v-icon>
-                    <span>By {{ project.user }}</span>
+                    <span>{{ project.user }}</span>
                 </v-tooltip>
             </v-list-tile-action>
         </v-list-tile>
