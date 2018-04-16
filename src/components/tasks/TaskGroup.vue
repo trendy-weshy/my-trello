@@ -2,9 +2,6 @@
   <span>
   <v-card tile>
     <v-toolbar card dark color="accent">
-<!--       <v-btn icon small flat color="white">
-        <v-icon>expand_less</v-icon>
-      </v-btn> -->
       <v-toolbar-title>
         <v-tooltip top>
           <v-subheader slot="activator">{{ group.name | capitalize('multi') }}</v-subheader>
@@ -32,8 +29,10 @@
       </v-tooltip>
     </v-toolbar>
   </v-card>
+
   <v-subheader>Tasks</v-subheader>
-  <TaskListView :groupId="group.id" />
+
+  <TaskListView :idx="idx" />
 
   </span>
 </template>
@@ -49,7 +48,7 @@ export default {
   },
   props: {
     idx: {
-      type: String,
+      type: Number,
       default: null
     }
   },

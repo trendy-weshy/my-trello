@@ -36,15 +36,15 @@ import { isNil } from 'lodash';
 export default {
   name: 'TaskListView',
   props: {
-    groupId: {
-      type: String,
+    idx: {
+      type: Number,
       default: null
     }
   },
   methods: {
     sortedTasks(by) {
-      if (isNil(this.groupId)) return [];
-      return this.$store.getters['TasksModule/sortedTasks'](this.groupId, by);
+      if (isNil(this.idx)) return [];
+      return this.$store.getters['TasksModule/sortedTasks'](this.idx, by);
     }
   }
 }
