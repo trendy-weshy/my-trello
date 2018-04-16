@@ -1,9 +1,12 @@
 <template>
     <v-list>
         <v-list-tile avatar class="py-2">
-            <v-list-tile-avatar>
-                <v-icon class="secondary white--text">group_work</v-icon>
-            </v-list-tile-avatar>
+            <v-tooltip top color="primary">
+                <v-list-tile-avatar slot="activator">
+                    <v-icon class="accent white--text">dashboard</v-icon>
+                </v-list-tile-avatar>
+                <span>{{ project.title }}</span>
+            </v-tooltip>
             <v-list-tile-content>
                 <v-list-tile-title>{{ project.title }}</v-list-tile-title>
                 <v-tooltip bottom>
@@ -12,8 +15,8 @@
                 </v-tooltip>
             </v-list-tile-content>
             <v-list-tile-action>
-                <v-tooltip bottom>
-                    <v-icon slot="activator" style="cursor: pointer;" color="secondary">face</v-icon>
+                <v-tooltip bottom color="primary">
+                    <v-icon slot="activator" style="cursor: pointer;" color="accent">face</v-icon>
                     <span>{{ project.user }}</span>
                 </v-tooltip>
             </v-list-tile-action>

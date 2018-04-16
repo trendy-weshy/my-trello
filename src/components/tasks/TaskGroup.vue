@@ -2,8 +2,13 @@
   <span>
   <v-card tile>
     <v-toolbar dense card dark color="accent">
-      <v-text-field autofocus class="mx-4" v-if="showSearch" prepend-icon="search" hide-details single-line label="Search Tasks"
+
+      <v-text-field autofocus
+        color="white" class="mx-4" v-if="showSearch"
+        prepend-icon="search" hide-details
+          single-line label="Search Tasks"
         @blur.prevent="showSearch = !showSearch" />
+
       <v-toolbar-title v-if="!showSearch">
         <v-tooltip top>
           <v-subheader slot="activator">{{ group.name | capitalize('multi') }}</v-subheader>
