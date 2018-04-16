@@ -4,9 +4,12 @@
     <v-container>
       <v-layout row wrap justify-center="">
         <v-flex xs12 class="mb-4">
-          <v-btn flat color="accent" @click.prevent="openTaskGroupEditor = !openTaskGroupEditor">
-            <v-icon>add</v-icon> New Task Group
-          </v-btn>
+          <v-toolbar dense color="transparent" flat>
+            <v-btn flat color="primary" @click.prevent="openTaskGroupEditor = !openTaskGroupEditor">
+              <v-icon>add</v-icon> New Task Group
+            </v-btn>
+            <v-text-field prepend-icon="search" hide-details single-line label="Search Task Groups"></v-text-field>
+          </v-toolbar>
         </v-flex>
         <v-flex class="my-2 mx-2" xs5 v-for="(taskGroup, idx) in sortedTaskGroups('createdAt')" :key="taskGroup.id">
           <TaskGroupComponent :idx="idx" :key="taskGroup.id" />

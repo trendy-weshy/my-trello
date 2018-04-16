@@ -1,7 +1,7 @@
 <template>
   <span>
   <v-card tile>
-    <v-toolbar card dark color="accent">
+    <v-toolbar dense card dark color="accent">
       <v-toolbar-title>
         <v-tooltip top>
           <v-subheader slot="activator">{{ group.name | capitalize('multi') }}</v-subheader>
