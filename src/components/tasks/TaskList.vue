@@ -1,6 +1,6 @@
 <template>
   <v-expansion-panel>
-    <v-expansion-panel-content v-for="task in sortedTasks('title')" :key="task.id" expand-icon="expand_more" ripple lazy>
+    <v-expansion-panel-content v-for="task in sortedTasks()" :key="task.id" expand-icon="expand_more" ripple lazy>
       <div slot="header">{{ task.title }}</div>
       <v-card>
         <v-card-text>{{ task.description }} <br /> --addedby {{ task.addedBy }}</v-card-text>
@@ -39,12 +39,16 @@ export default {
     idx: {
       type: Number,
       default: null
+    },
+    by: {
+      type: String,
+      default: null
     }
   },
   methods: {
-    sortedTasks(by) {
+    sortedTasks() {
       if (isNil(this.idx)) return [];
-      return this.$store.getters['TasksModule/sortedTasks'](this.idx, by);
+      return this.$store.getters['TasksModule/sortedTasks'](this.idx, this.by || 'title');
     }
   }
 }

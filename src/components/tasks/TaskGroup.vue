@@ -28,21 +28,28 @@
           <v-icon dark>more_vert</v-icon>
         </v-btn>
         <v-list>
-          <v-list-tile ripple @click="dummyMethod('edit task group')">
+          <v-list-tile ripple @click="sortTasksBy = 'title'">
               <v-list-tile-action>
                   <v-icon>sort_by_alpha</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
-                  <v-list-tile-title>Sort Tasks by Name</v-list-tile-title>
+                  <v-list-tile-title>Sort Tasks by Title</v-list-tile-title>
               </v-list-tile-content>
           </v-list-tile>
-          <v-divider />
-          <v-list-tile ripple @click="dummyMethod('edit task group')">
+          <v-list-tile ripple @click="sortTasksBy = 'createdAt'">
               <v-list-tile-action>
                   <v-icon>date_range</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
-                  <v-list-tile-title>Sort Tasks by Date</v-list-tile-title>
+                  <v-list-tile-title>Sort Tasks by Creation Date</v-list-tile-title>
+              </v-list-tile-content>
+          </v-list-tile>
+          <v-list-tile ripple @click="sortTasksBy = 'updatedAt'">
+              <v-list-tile-action>
+                  <v-icon>timeline</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                  <v-list-tile-title>Sort Tasks by Updated Date</v-list-tile-title>
               </v-list-tile-content>
           </v-list-tile>
           <v-divider />
@@ -54,7 +61,6 @@
                   <v-list-tile-title>Edit Task Group</v-list-tile-title>
               </v-list-tile-content>
           </v-list-tile>
-          <v-divider />
           <v-list-tile ripple @click="dummyMethod('edit task group')">
               <v-list-tile-action>
                   <v-icon>delete_forever</v-icon>
@@ -70,7 +76,7 @@
 
   <v-subheader>Tasks</v-subheader>
 
-  <TaskListView :idx="idx" />
+  <TaskListView :idx="idx" :by="sortTasksBy" />
 
   </span>
 </template>
@@ -94,10 +100,11 @@ export default {
     group() {
       if (isNil(this.idx)) return {};
       return this.$store.getters['TasksModule/taskGroup'](this.idx);
-    }
+    },
   },
   data: () => ({
-    showSearch: false
+    showSearch: false,
+    sortTasksBy: null,
   }),
   methods: {
     dummyMethod(v) { console.log(v); }

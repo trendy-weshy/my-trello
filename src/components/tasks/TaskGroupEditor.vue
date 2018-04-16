@@ -7,7 +7,7 @@
           <v-icon>close</v-icon>
         </v-btn>
         <v-toolbar-title>Add a New Task Group</v-toolbar-title>
-        <v-spacer></v-spacer>
+        <v-spacer />
         <v-tooltip color="accent" bottom>
           <v-btn slot="activator" color="primary" @click.prevent="!$v.$invalid && save()">
             <v-icon dark>done_all</v-icon>&nbsp;&nbsp;Done
@@ -18,6 +18,7 @@
 
       <form novalidate name="tasksForm" @submit.prevent="!$v.$invalid && save()" class="px-4 py-4">
           <v-text-field
+            autofocus
             label="Name of the Task Group"
             single-line
             prepend-icon="library_add"
