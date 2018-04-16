@@ -38,18 +38,18 @@ export default {
   props: {
     idx: {
       type: Number,
-      default: null
+      default: null,
     },
     by: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   methods: {
     sortedTasks() {
       if (isNil(this.idx)) return [];
       return this.$store.getters['TasksModule/sortedTasks'](this.idx, this.by || 'title');
-    }
-  }
-}
+    },
+  },
+};
 </script>

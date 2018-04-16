@@ -60,12 +60,12 @@ export default {
   name: 'TaskGroupListView',
   components: {
     TaskGroupComponent,
-    TaskGroupEditorModal
+    TaskGroupEditorModal,
   },
   computed: {
     ...mapGetters({
-      taskGroups: 'TasksModule/taskGroups'
-    })
+      taskGroups: 'TasksModule/taskGroups',
+    }),
   },
   methods: {
     sortedTaskGroups(by) {
@@ -73,12 +73,12 @@ export default {
     },
     getTaskGroup(idx) {
       return this.$store.getters['TasksModule/taskGroup'](idx);
-    }
+    },
   },
   data: () => ({
     openTaskGroupEditor: false,
-    sortTasksGroupsBy: null
+    sortTasksGroupsBy: null,
   }),
-}
+};
 </script>
 

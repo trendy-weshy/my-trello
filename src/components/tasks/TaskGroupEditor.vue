@@ -55,7 +55,7 @@ export default {
     model: { name: '' },
   }),
   validations: {
-    model: { name: { required } }
+    model: { name: { required } },
   },
   methods: {
     save() {

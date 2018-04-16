@@ -87,19 +87,19 @@
 </template>
 
 <script>
-import TaskListView from './TaskList.vue';
 import { isNil } from 'lodash';
+import TaskListView from './TaskList.vue';
 
 export default {
   name: 'TaskGroupComponent',
   components: {
-    TaskListView
+    TaskListView,
   },
   props: {
     idx: {
       type: Number,
-      default: null
-    }
+      default: null,
+    },
   },
   computed: {
     group() {
@@ -112,7 +112,7 @@ export default {
     sortTasksBy: null,
   }),
   methods: {
-    dummyMethod(v) { console.log(v); }
+    dummyMethod(v) { console.log(v); },
   },
-}
+};
 </script>
