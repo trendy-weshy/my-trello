@@ -1,7 +1,7 @@
 <template>
     <span>
 
-        <v-navigation-drawer fixed permanent touchless stateless clipped app>
+        <v-navigation-drawer fixed permanent touchless stateless clipped app width="250">
             <Sidebar />
         </v-navigation-drawer>
 

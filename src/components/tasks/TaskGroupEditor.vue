@@ -6,7 +6,7 @@
         <v-btn icon @click.native="$emit('close:task-group-editor')" dark>
           <v-icon>close</v-icon>
         </v-btn>
-        <v-toolbar-title>Add a new Task Group</v-toolbar-title>
+        <v-toolbar-title>Add a New Task Group</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-tooltip color="accent" bottom>
           <v-btn slot="activator" color="primary" @click.prevent="!$v.$invalid && save()">

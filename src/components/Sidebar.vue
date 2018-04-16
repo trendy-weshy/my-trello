@@ -1,6 +1,5 @@
 <template>
     <v-list>
-
         <v-list-tile avatar class="py-2">
             <v-list-tile-avatar>
                 <v-icon class="secondary white--text">group_work</v-icon>

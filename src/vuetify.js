@@ -18,6 +18,7 @@ import {
   VForm,
   VDialog,
   VTextField,
+  VExpansionPanel,
   transitions,
 } from 'vuetify';
 
@@ -41,6 +42,7 @@ Vue.use(Vuetify, {
     VForm,
     VDialog,
     VTextField,
+    VExpansionPanel,
     transitions,
   },
   theme: {

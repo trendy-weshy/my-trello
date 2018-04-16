@@ -7,6 +7,7 @@ import store from './store';
 import './registerServiceWorker';
 import './vuetify';
 import '../node_modules/vuetify/src/stylus/app.styl';
+import './filters';
 
 sync(store, router, { moduleName: 'RouteModule' });
 
