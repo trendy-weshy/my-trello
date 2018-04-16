@@ -5,7 +5,7 @@
         </v-btn>
         <v-card>
             <v-card-title class="headline px-4">
-                Edit your project details
+                Edit Your Project Details
                 <v-subheader>
                     Press&nbsp;<strong class="info--text">Enter Button</strong>&nbsp;once done making changes
                 </v-subheader>

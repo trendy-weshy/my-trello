@@ -1,7 +1,7 @@
 <template>
   <span>
   <v-card tile>
-    <v-toolbar dense card dark color="accent" card>
+    <v-toolbar dense card dark color="accent">
       <v-text-field autofocus class="mx-4" v-if="showSearch" prepend-icon="search" hide-details single-line label="Search Tasks"
         @blur.prevent="showSearch = !showSearch" />
       <v-toolbar-title v-if="!showSearch">
@@ -36,20 +36,22 @@
                   <v-list-tile-title>Sort Tasks by Name</v-list-tile-title>
               </v-list-tile-content>
           </v-list-tile>
+          <v-divider />
           <v-list-tile ripple @click="dummyMethod('edit task group')">
               <v-list-tile-action>
                   <v-icon>date_range</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
-                  <v-list-tile-title>Sort Tasks by Date of Creation</v-list-tile-title>
+                  <v-list-tile-title>Sort Tasks by Date</v-list-tile-title>
               </v-list-tile-content>
           </v-list-tile>
+          <v-divider />
           <v-list-tile ripple @click="dummyMethod('edit task group')">
               <v-list-tile-action>
                   <v-icon>edit</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
-                  <v-list-tile-title>Edit Task Group Details</v-list-tile-title>
+                  <v-list-tile-title>Edit Task Group</v-list-tile-title>
               </v-list-tile-content>
           </v-list-tile>
           <v-divider />
