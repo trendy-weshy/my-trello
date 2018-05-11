@@ -6,7 +6,10 @@
         <v-btn icon @click.native="$emit('close:task-group-editor')" dark>
           <v-icon>close</v-icon>
         </v-btn>
-        <v-toolbar-title>Add a New Task Group</v-toolbar-title>
+        <v-toolbar-title>
+          <span v-if="!edit">Add a New Task Group</span>
+          <span v-if="edit">Edit Task Group</span>
+        </v-toolbar-title>
         <v-spacer />
         <v-tooltip color="accent" bottom>
           <v-btn slot="activator" color="primary" @click.prevent="!$v.$invalid && save()">
@@ -37,6 +40,7 @@
 <script>
 import { validationMixin } from 'vuelidate';
 import { required } from 'vuelidate/lib/validators';
+import { isEmpty } from 'lodash';
 
 export default {
   name: 'TaskGroupEditorModal',
@@ -50,6 +54,11 @@ export default {
       type: Boolean,
       default: false,
     },
+    stagedTaskGroup: {
+      type: Object,
+      required: false,
+      default: () => ({}),
+    },
   },
   data: () => ({
     model: { name: '' },
@@ -60,7 +69,12 @@ export default {
   methods: {
     save() {
       this.$v.$touch();
-      this.$store.dispatch('TasksModule/addNewGroup', this.model.name);
+      if (this.edit && !isEmpty(this.stagedTaskGroup)) {
+        this.$store.dispatch('TasksModule/editGroup', { name: this.model.name, groupId: this.stagedTaskGroup.id })
+      } else {
+        this.$store.dispatch('TasksModule/addNewGroup', this.model.name);
+      }
+      
       this.clear();
       this.$emit('close:task-group-editor');
     },
@@ -68,6 +82,15 @@ export default {
       this.$v.$reset();
       this.model = { name: '' };
     },
+    populateTaskGroupModel() {
+      if (this.edit && !isEmpty(this.stagedTaskGroup)) {
+        this.model = Object.assign({}, { name: this.stagedTaskGroup.name });
+      }
+    },
+  },
+  mounted() {
+    this.populateTaskGroupModel();
+    console.log('i ran!');
   },
 };
 </script>

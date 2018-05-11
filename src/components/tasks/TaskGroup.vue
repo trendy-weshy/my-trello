@@ -3,11 +3,15 @@
   <v-card tile>
     <v-toolbar dense card dark color="accent">
 
-      <v-text-field autofocus
-        color="white" class="mx-4" v-if="showSearch"
-        prepend-icon="search" hide-details
-          single-line label="Search Tasks"
-        @blur.prevent="showSearch = !showSearch" />
+      <v-text-field
+        autofocus
+        color="white" class="mx-4"
+        v-if="showSearch"
+        prepend-icon="search"
+        hide-details
+        single-line label="Search Tasks"
+        @blur.prevent="showSearch = !showSearch"
+      />
 
       <v-toolbar-title v-if="!showSearch">
         <v-tooltip top>
@@ -58,7 +62,7 @@
               </v-list-tile-content>
           </v-list-tile>
           <v-divider />
-          <v-list-tile ripple @click="dummyMethod('edit task group')">
+          <v-list-tile ripple @click="edit()">
               <v-list-tile-action>
                   <v-icon>edit</v-icon>
               </v-list-tile-action>
@@ -113,6 +117,9 @@ export default {
   }),
   methods: {
     dummyMethod(v) { console.log(v); },
+    edit() {
+      this.$emit('edit:task-group', { id: this.idx });
+    },
   },
 };
 </script>

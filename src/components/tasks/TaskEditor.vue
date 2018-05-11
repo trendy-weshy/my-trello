@@ -7,30 +7,30 @@
             </v-card-title>
         </v-card>
 
-    </v-dialog>  
+    </v-dialog>
 </template>
 
 <script>
 import { validationMixin } from 'vuelidate';
 
 export default {
-    name: 'TaskEditorComponent',
-    mixins: [validationMixin],
-    props: {
-        dialog: {
-            type: Boolean,
-            default: false
-        }
+  name: 'TaskEditorComponent',
+  mixins: [validationMixin],
+  props: {
+    dialog: {
+      type: Boolean,
+      default: false,
     },
-    data: () => ({}),
-    methods: {
-        save() {
-            //
-        },
-        close() {
-            this.$v.reset();
-            this.$emit('close:add-task-editor');
-        }
-    }
-}
+  },
+  data: () => ({}),
+  methods: {
+    save() {
+      //
+    },
+    close() {
+      this.$v.reset();
+      this.$emit('close:add-task-editor');
+    },
+  },
+};
 </script>
