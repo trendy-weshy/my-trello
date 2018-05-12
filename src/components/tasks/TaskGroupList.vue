@@ -1,6 +1,6 @@
 <template>
   <v-flex xs12 justify-center>
-    <TaskGroupEditorModal :dialog="openTaskGroupEditor" :edit="!!stageTaskGroup" :stagedTaskGroup="stageTaskGroup" @close:task-group-editor="openTaskGroupEditor = !openTaskGroupEditor" />
+    <TaskGroupEditorModal />
 
     <v-container>
       <v-layout row wrap justify-center>
@@ -8,7 +8,7 @@
           <v-toolbar dense color="primary">
             <v-text-field color="white" prepend-icon="search" hide-details single-line label="Search Task Groups" />
             <v-spacer />
-            <v-btn flat dark @click.prevent="openTaskGroupEditor = !openTaskGroupEditor">
+            <v-btn flat dark @click.prevent="$store.commit('UI/UIForms/toggle_TaskGroupForm')">
               <v-icon>add</v-icon> New Task Group
             </v-btn>
             <v-menu lazy transition="slide-x-reverse-transition" left>
@@ -54,7 +54,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { isNil } from 'lodash';
 import TaskGroupComponent from './TaskGroup.vue';
 import TaskGroupEditorModal from './TaskGroupEditor.vue';
 
@@ -68,14 +67,6 @@ export default {
     ...mapGetters({
       taskGroups: 'TasksModule/taskGroups',
     }),
-    stageTaskGroup: {
-      get() {
-        return isNil(this.stageTaskGroupById) ? undefined : this.getTaskGroup(this.stageTaskGroupById);
-      },
-      set(id) {
-        this.stageTaskGroupById = id;
-      },
-    },
   },
   methods: {
     sortedTaskGroups(by) {
@@ -84,15 +75,16 @@ export default {
     getTaskGroup(idx) {
       return this.$store.getters['TasksModule/taskGroup'](idx);
     },
-    editTaskGroup(e) {
-      this.stageTaskGroup = e.id;
-      this.openTaskGroupEditor = true;
+    getTaskGroupById(id) {
+      return this.$store.getters['TasksModule/taskGroupById'](id);
     },
+    editTaskGroup(e) {
+      this.$store.commit('UI/UIForms/edit_TaskGroupForm', e);
+      this.$store.commit('UI/UIForms/toggle_TaskGroupForm');
+    }
   },
   data: () => ({
-    openTaskGroupEditor: false,
     sortTasksGroupsBy: null,
-    stageTaskGroupById: null,
   }),
 };
 </script>

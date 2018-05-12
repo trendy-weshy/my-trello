@@ -1,9 +1,9 @@
 <template>
-  <v-dialog v-model="dialog" persistent max-width="450px" lazy transition="dialog-bottom-transition">
+  <v-dialog v-model="taskGroupForm.openModal" persistent max-width="450px" lazy transition="dialog-bottom-transition">
 
     <v-card tile>
       <v-toolbar card dark color="accent">
-        <v-btn icon @click.native="$emit('close:task-group-editor')" dark>
+        <v-btn icon @click.native="" dark>
           <v-icon>close</v-icon>
         </v-btn>
         <v-toolbar-title>
@@ -41,15 +41,12 @@
 import { validationMixin } from 'vuelidate';
 import { required } from 'vuelidate/lib/validators';
 import { isEmpty } from 'lodash';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'TaskGroupEditorModal',
   mixins: [validationMixin],
   props: {
-    dialog: {
-      type: Boolean,
-      default: false,
-    },
     edit: {
       type: Boolean,
       default: false,
@@ -63,34 +60,34 @@ export default {
   data: () => ({
     model: { name: '' },
   }),
+  computed: {
+    ...mapGetters({
+      taskGroupForm: `UI/UIForms/get_TaskGroupForm`,
+    })
+  },
   validations: {
     model: { name: { required } },
   },
   methods: {
     save() {
       this.$v.$touch();
-      if (this.edit && !isEmpty(this.stagedTaskGroup)) {
-        this.$store.dispatch('TasksModule/editGroup', { name: this.model.name, groupId: this.stagedTaskGroup.id })
+
+      if (this.taskGroupForm.edit) {
+        this.$store.dispatch('TasksModule/editGroup', { name: this.model.name, groupId: this.taskGroupForm.id });
       } else {
         this.$store.dispatch('TasksModule/addNewGroup', this.model.name);
       }
-      
+
       this.clear();
-      this.$emit('close:task-group-editor');
+      this.$store.commit('UI/UIForms/toggle_TaskGroupForm');
     },
     clear() {
       this.$v.$reset();
-      this.model = { name: '' };
+      this.model = { name: '' }
     },
-    populateTaskGroupModel() {
-      if (this.edit && !isEmpty(this.stagedTaskGroup)) {
-        this.model = Object.assign({}, { name: this.stagedTaskGroup.name });
-      }
+    close() {
+      this.$store.commit('UI/UIForm/toggle_TaskGroupForm')
     },
-  },
-  mounted() {
-    this.populateTaskGroupModel();
-    console.log('i ran!');
   },
 };
 </script>

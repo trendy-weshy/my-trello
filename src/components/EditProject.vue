@@ -1,5 +1,5 @@
 <template>
-    <v-dialog v-model="dialog" persistent max-width="500px" lazy>
+    <v-dialog v-model="projectForm.openModal" persistent max-width="500px" lazy>
         <v-btn small slot="activator" color="white" dark flat fab @click.native.prevent="dialog = !dialog">
             <v-icon>edit</v-icon>
         </v-btn>
@@ -10,7 +10,7 @@
                     Press&nbsp;<strong class="info--text">Enter Button</strong>&nbsp;once done making changes
                 </v-subheader>
             </v-card-title>
-            <ProjectDetailsForm edit :stagedProject="project" @submit-project="edit($event)" class="px-4" />
+            <ProjectDetailsForm @submit-project="edit($event)" class="px-4" />
             <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="secondary" class="mr-3" @click.native.prevent="dialog = !dialog" flat>
@@ -33,14 +33,15 @@ export default {
   computed: {
     ...mapGetters({
       project: 'ProjectModule/project',
+      projectForm: 'UI/UIForms/get_ProjectForm',
     }),
   },
-  data: () => ({ dialog: false }),
   methods: {
     edit(e) {
       const { title, rootDir, user } = e.project;
       this.$store.dispatch('ProjectModule/addProject', { title, rootDir, user });
-      this.dialog = !this.dialog;
+      this.$store.commit('UI/UIForms/clear_ProjectForm');
+      this.$store.commit('UI/UIForms/toggle_ProjectForm');
     },
   },
 };

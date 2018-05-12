@@ -1,5 +1,6 @@
 <template>
   <span>
+    <!-- <TaskGroupEditorModal :dialog="openTaskGroupEditor" @close:task-group-editor="openTaskGroupEditor = !openTaskGroupEditor" :edit="true" :stagedTaskGroup="group" /> -->
   <v-card tile>
     <v-toolbar dense card dark color="accent">
 
@@ -62,7 +63,7 @@
               </v-list-tile-content>
           </v-list-tile>
           <v-divider />
-          <v-list-tile ripple @click="edit()">
+          <v-list-tile ripple @click="$emit('edit:task-group', group.id)">
               <v-list-tile-action>
                   <v-icon>edit</v-icon>
               </v-list-tile-action>
@@ -107,7 +108,7 @@ export default {
   },
   computed: {
     group() {
-      if (isNil(this.idx)) return {};
+      if (isNil(this.idx)) return null;
       return this.$store.getters['TasksModule/taskGroup'](this.idx);
     },
   },
@@ -117,9 +118,6 @@ export default {
   }),
   methods: {
     dummyMethod(v) { console.log(v); },
-    edit() {
-      this.$emit('edit:task-group', { id: this.idx });
-    },
   },
 };
 </script>

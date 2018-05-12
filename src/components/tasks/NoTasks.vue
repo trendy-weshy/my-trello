@@ -1,6 +1,7 @@
 <template>
   <v-flex xs6 justify-center align-baseline>
-    <TaskGroupEditorModal :dialog="openTaskGroupEditor" @close:task-group-editor="openTaskGroupEditor = !openTaskGroupEditor" />
+    <TaskGroupEditorModal />
+
     <v-card color="primary" dark>
       <v-container fluid grid-list-lg>
         <v-layout row>
@@ -22,7 +23,7 @@
       </v-container>
 
       <v-card-actions class="mb-4">
-        <v-btn color="accent" flat dark @click.native="openTaskGroupEditor = !openTaskGroupEditor">
+        <v-btn color="accent" flat dark @click.native="$store.commit('UI/UIForms/toggle_TaskGroupForm')">
           <v-icon dark>create_new_folder</v-icon>&nbsp;&nbsp;Create new Task Group
         </v-btn>
       </v-card-actions>
@@ -38,7 +39,6 @@ export default {
   name: 'NoTasksView',
   data: () => ({
     baseUrl: process.env.BASE_URL,
-    openTaskGroupEditor: false,
   }),
   components: {
     TaskGroupEditorModal,

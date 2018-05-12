@@ -147,6 +147,7 @@ export default {
     error: state => state.error,
     taskGroups: state => state.tasks,
     taskGroup: (state, getters) => idx => getters.taskGroups[idx],
+    taskGroupById: (state, getters) => id => getters.taskGroups[findIndex(getters.taskGroups, o => o.id === id)],
     sortedTaskGroups: (state, getters) => by => sortBy(getters.taskGroups, [o => o[by]]),
     taskList: (state, getters) => idx => getters.taskGroup(idx).tasks,
     singeTask: (state, getters) => (idx, taskIdx) => getters.taskGroup(idx).tasks[taskIdx],

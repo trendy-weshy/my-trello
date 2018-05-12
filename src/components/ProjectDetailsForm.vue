@@ -54,6 +54,7 @@
 import { isEmpty } from 'lodash';
 import { validationMixin } from 'vuelidate';
 import { required } from 'vuelidate/lib/validators';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'MyTrelloProject',
@@ -62,15 +63,6 @@ export default {
     provideSubmitBtn: {
       type: Boolean,
       default: false,
-    },
-    edit: {
-      type: Boolean,
-      default: false,
-    },
-    stagedProject: {
-      type: Object,
-      required: false,
-      default: () => ({}),
     },
   },
   validations: {
@@ -87,6 +79,11 @@ export default {
       user: '',
     },
   }),
+  computed: {
+    ...mapGetters({
+      projectForm: 'UI/UIForms/get_ProjectForm',
+    })
+  },
   methods: {
     submit() {
       this.$v.$touch();
@@ -100,14 +97,22 @@ export default {
         user: '',
       };
     },
-    populateProjectModel() {
-      if (this.edit && !isEmpty(this.stagedProject)) {
-        this.project = Object.assign({}, this.stagedProject);
+    populateProjectModel(form) {
+      if (form.edit && !isEmpty(form.stageData)) {
+        this.projectForm = Object.assign({}, form.stageData);
       }
     },
   },
-  mounted() {
-    this.populateProjectModel();
+  watch: {
+    projectForm: {
+      handler: (newV) => { cpnsole.log(newV);
+        if (newV.edit && !isEmpty(newV.stageData)) {
+          this.projectForm = Object.assign({}, newV.stageData);
+        }
+      },
+      deep: true,
+      immediate: false
+    }
   },
 };
 </script>
