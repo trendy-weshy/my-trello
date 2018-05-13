@@ -45,6 +45,7 @@ export default {
     if (condition) {
       this.$router.push({ path: 'console' });
     }
+    this.$store.commit('UI/UIForms/clear_ProjectForm');    
   },
 };
 </script>

@@ -1,6 +1,14 @@
 <template>
   <span>
-    <!-- <TaskGroupEditorModal :dialog="openTaskGroupEditor" @close:task-group-editor="openTaskGroupEditor = !openTaskGroupEditor" :edit="true" :stagedTaskGroup="group" /> -->
+  <ConfirmationComponent
+    :dialog="taskGroupDeleteDialog" 
+    :title="'Confirm Deletion of ' + group.name" 
+    message="Deleting a task group will cause the deletion of all tasks created in it. The data will also be delete on the private file database. This action is irreversible!"
+    id="task-group-deletion"
+    truthyPlaceholder="I know what I am doing"
+    @user:answer="deleteTaskGroup($event)"
+  />
+
   <v-card tile>
     <v-toolbar dense card dark color="accent">
 
@@ -71,7 +79,7 @@
                   <v-list-tile-title>Edit Task Group</v-list-tile-title>
               </v-list-tile-content>
           </v-list-tile>
-          <v-list-tile ripple @click="dummyMethod('edit task group')">
+          <v-list-tile ripple @click="taskGroupDeleteDialog = !taskGroupDeleteDialog">
               <v-list-tile-action>
                   <v-icon>delete_forever</v-icon>
               </v-list-tile-action>
@@ -94,11 +102,13 @@
 <script>
 import { isNil } from 'lodash';
 import TaskListView from './TaskList.vue';
+import ConfirmationComponent from '@/components/misc/Confirmation.vue';
 
 export default {
   name: 'TaskGroupComponent',
   components: {
     TaskListView,
+    ConfirmationComponent,
   },
   props: {
     idx: {
@@ -115,9 +125,15 @@ export default {
   data: () => ({
     showSearch: false,
     sortTasksBy: null,
+    taskGroupDeleteDialog: false
   }),
   methods: {
-    dummyMethod(v) { console.log(v); },
+    deleteTaskGroup(e) {
+      this.taskGroupDeleteDialog = false; // close modal
+      if (e.id === 'task-group-deletion' && e.action) {
+        this.$store.dispatch('TasksModule/removeGroup', { groupId: this.group.id });
+      }
+    }
   },
 };
 </script>
