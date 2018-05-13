@@ -30,7 +30,7 @@
       </v-toolbar-title>
       <v-spacer v-if="!showSearch"></v-spacer>
       <v-tooltip top v-if="!showSearch">
-        <v-btn icon small slot="activator" flat color="white">
+        <v-btn icon small slot="activator" flat color="white" @click.native="addTask()">
           <v-icon dark>add</v-icon>
         </v-btn>
         <span>Add a new Task</span>
@@ -133,7 +133,10 @@ export default {
       if (e.id === 'task-group-deletion' && e.action) {
         this.$store.dispatch('TasksModule/removeGroup', { groupId: this.group.id });
       }
-    }
+    },
+    addTask() {
+      this.$store.commit('UI/UIForms/toggle_TaskForm');
+    },
   },
 };
 </script>

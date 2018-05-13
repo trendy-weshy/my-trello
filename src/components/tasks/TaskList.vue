@@ -1,5 +1,8 @@
 <template>
-  <v-expansion-panel>
+  <span>
+    <TaskEditorModal @close:task-editor="$store.commit('UI/UIForms/toggle_TaskForm')" />
+
+    <v-expansion-panel>
     <v-expansion-panel-content v-for="task in sortedTasks()" :key="task.id" expand-icon="expand_more" ripple lazy>
       <div slot="header">{{ task.title }}</div>
       <v-card>
@@ -27,14 +30,18 @@
         </v-card-action>
       </v-card>
     </v-expansion-panel-content>
-  </v-expansion-panel>
-</template>
-
+   </v-expansion-panel>
+  </span>
+</template> 
 <script>
 import { isNil } from 'lodash';
+import TaskEditorModal from './TaskEditor.vue';
 
 export default {
   name: 'TaskListView',
+  components: {
+    TaskEditorModal,
+  },
   props: {
     idx: {
       type: Number,
