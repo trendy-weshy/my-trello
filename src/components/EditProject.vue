@@ -1,6 +1,6 @@
 <template>
     <v-dialog v-model="projectForm.openModal" persistent max-width="500px" lazy>
-        <v-btn small slot="activator" color="white" dark flat fab @click.native.prevent="dialog = !dialog">
+        <v-btn small slot="activator" color="white" dark flat fab @click.native.prevent="editForm()">
             <v-icon>edit</v-icon>
         </v-btn>
         <v-card>
@@ -13,7 +13,7 @@
             <ProjectDetailsForm @submit-project="edit($event)" class="px-4" />
             <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="secondary" class="mr-3" @click.native.prevent="dialog = !dialog" flat>
+                <v-btn color="secondary" class="mr-3" @click.native.prevent="close()" flat>
                     <v-icon>close</v-icon> Close
                 </v-btn>
             </v-card-actions>
@@ -40,7 +40,12 @@ export default {
     edit(e) {
       const { title, rootDir, user } = e.project;
       this.$store.dispatch('ProjectModule/addProject', { title, rootDir, user });
-      this.$store.commit('UI/UIForms/clear_ProjectForm');
+      this.$store.dispatch('UI/UIForms/closeForm', { form: 'ProjectForm', toggleState: false, shouldClear: false });
+    },
+    editForm() {
+        this.$store.dispatch('UI/UIForms/editForm', { form: 'ProjectForm', stageData: this.project });
+    },
+    close() {
       this.$store.commit('UI/UIForms/toggle_ProjectForm');
     },
   },

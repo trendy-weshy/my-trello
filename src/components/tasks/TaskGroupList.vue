@@ -79,9 +79,8 @@ export default {
       return this.$store.getters['TasksModule/taskGroupById'](id);
     },
     editTaskGroup(e) {
-      this.$store.commit('UI/UIForms/edit_TaskGroupForm', e);
-      this.$store.commit('UI/UIForms/toggle_TaskGroupForm');
-    }
+      this.$store.dispatch('UI/UIForms/editForm', { form: 'TaskGroupForm', stageData: this.getTaskGroupById(e) });
+    },
   },
   data: () => ({
     sortTasksGroupsBy: null,

@@ -3,6 +3,8 @@
  * UI State for All forms
  */
 
+import { isNil } from 'lodash';
+
 const uiForms = [
   'ProjectForm',
   'TaskGroupForm',
@@ -26,8 +28,14 @@ const uiFormMutations = ((forms) => {
       state[form] = { ...state[form], edit: false, stageData: null };
     };
 
-    obj[`toggle_${form}`] = (state) => {
-      state[form] = { ...state[form], openModal: !state[form].openModal };
+    obj[`toggle_${form}`] = (state, toggle_state = null) => {
+      if (!isNil(toggle_state)) {
+        state[form] = { ...state[form], openModal: toggle_state };
+      } else if (state[form].openModal) {
+        state[form] = { edit: false, stageData: null, openModal: false };
+      } else {
+        state[form] = { ...state[form], openModal: true };
+      }
     };
   });
 
@@ -49,12 +57,15 @@ const uiforms = {
   mutations: { ...uiFormMutations },
   getters: { ...uiFormGetters },
   actions: {
-    openForm(ctx, { form }) {
-      ctx.commit(`toggle_${form}`);
-    },
     editForm(ctx, { form, stageData }) {
       ctx.commit(`edit_${form}`, stageData);
       ctx.commit(`toggle_${form}`);
+    },
+    closeForm(ctx, { form, toggleState, shouldClear }) {
+      if (shouldClear) {
+        ctx.commit(`clear_${form}`);
+      }
+      ctx.commit(`toggle_${form}`, toggleState);
     },
   },
 };

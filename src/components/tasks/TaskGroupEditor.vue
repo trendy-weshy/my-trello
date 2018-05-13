@@ -3,15 +3,15 @@
 
     <v-card tile>
       <v-toolbar card dark color="accent">
-        <v-btn icon @click.native="" dark>
+        <v-btn icon @click.native="close()" dark tabindex="2">
           <v-icon>close</v-icon>
         </v-btn>
         <v-toolbar-title>
-          <span v-if="!edit">Add a New Task Group</span>
-          <span v-if="edit">Edit Task Group</span>
+          <span v-if="!taskGroupForm.edit">Add a New Task Group</span>
+          <span v-if="taskGroupForm.edit">Edit Task Group</span>
         </v-toolbar-title>
         <v-spacer />
-        <v-tooltip color="accent" bottom>
+        <v-tooltip color="accent" bottom tabindex="3">
           <v-btn slot="activator" color="primary" @click.prevent="!$v.$invalid && save()">
             <v-icon dark>done_all</v-icon>&nbsp;&nbsp;Done
           </v-btn>
@@ -21,11 +21,12 @@
 
       <form novalidate name="tasksForm" @submit.prevent="!$v.$invalid && save()" class="px-4 py-4">
           <v-text-field
+            tabindex="1"
             autofocus
             label="Name of the Task Group"
             single-line
             prepend-icon="library_add"
-            v-model.lazy="model.name"
+            v-model="model.name"
             hint="The name used to identify a list of tasks"
             required
             clearable
@@ -40,8 +41,8 @@
 <script>
 import { validationMixin } from 'vuelidate';
 import { required } from 'vuelidate/lib/validators';
-import { isEmpty } from 'lodash';
 import { mapGetters } from 'vuex';
+import { isNil } from 'lodash';
 
 export default {
   name: 'TaskGroupEditorModal',
@@ -62,8 +63,8 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      taskGroupForm: `UI/UIForms/get_TaskGroupForm`,
-    })
+      taskGroupForm: 'UI/UIForms/get_TaskGroupForm',
+    }),
   },
   validations: {
     model: { name: { required } },
@@ -73,7 +74,7 @@ export default {
       this.$v.$touch();
 
       if (this.taskGroupForm.edit) {
-        this.$store.dispatch('TasksModule/editGroup', { name: this.model.name, groupId: this.taskGroupForm.id });
+        this.$store.dispatch('TasksModule/editGroup', { name: this.model.name, groupId: this.taskGroupForm.stageData.id });
       } else {
         this.$store.dispatch('TasksModule/addNewGroup', this.model.name);
       }
@@ -83,10 +84,21 @@ export default {
     },
     clear() {
       this.$v.$reset();
-      this.model = { name: '' }
+      this.model = { name: '' };
     },
     close() {
-      this.$store.commit('UI/UIForm/toggle_TaskGroupForm')
+      this.$store.commit('UI/UIForms/toggle_TaskGroupForm');
+    },
+  },
+  watch: {
+    taskGroupForm: {
+      deep: true,
+      handler(newV) {
+        if (newV.edit && !isNil(newV.stageData)) {
+          this.$v.$reset();
+          this.model = { name: newV.stageData.name };
+        }
+      },
     },
   },
 };

@@ -1,6 +1,7 @@
 <template>
     <form novalidate name="addProject" class="pb-5" @keypress.enter.prevent="!$v.$invalid && submit()">
         <v-text-field
+            tabindex="1"
             label="Title"
             single-line
             prepend-icon="title"
@@ -12,6 +13,7 @@
             @input="$v.project.title.$touch()"></v-text-field>
 
         <v-text-field
+            tabindex="2"
             label="Root Path"
             single-line
             prepend-icon="directions"
@@ -23,6 +25,7 @@
             @input="$v.project.rootDir.$touch()"></v-text-field>
 
         <v-text-field
+            tabindex="3"
             label="Name"
             single-line
             prepend-icon="portrait"
@@ -34,6 +37,7 @@
             @input="$v.project.user.$touch()"></v-text-field>
 
         <v-btn
+            tabindex="4"
             v-if="provideSubmitBtn"
             fab
             absolute
@@ -51,7 +55,7 @@
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
+import { isNil } from 'lodash';
 import { validationMixin } from 'vuelidate';
 import { required } from 'vuelidate/lib/validators';
 import { mapGetters } from 'vuex';
@@ -82,7 +86,7 @@ export default {
   computed: {
     ...mapGetters({
       projectForm: 'UI/UIForms/get_ProjectForm',
-    })
+    }),
   },
   methods: {
     submit() {
@@ -97,22 +101,18 @@ export default {
         user: '',
       };
     },
-    populateProjectModel(form) {
-      if (form.edit && !isEmpty(form.stageData)) {
-        this.projectForm = Object.assign({}, form.stageData);
-      }
-    },
   },
   watch: {
     projectForm: {
-      handler: (newV) => { cpnsole.log(newV);
-        if (newV.edit && !isEmpty(newV.stageData)) {
-          this.projectForm = Object.assign({}, newV.stageData);
+      handler: function (newV) {
+        if (newV.edit && !isNil(newV.stageData)) {
+          this.$v.$reset();
+          this.project = Object.assign({}, newV.stageData);
         }
       },
       deep: true,
-      immediate: false
-    }
+      immediate: true
+    },
   },
 };
 </script>
